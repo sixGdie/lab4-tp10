@@ -1,0 +1,38 @@
+<div class="row row-cols-1 row-cols-md-2 g-4" style="padding: 10px 15px">
+  <div class="col" *ngFor="let el of instrumentos">
+    <div class="card" style="padding: 10px 15px">
+      <img
+        src="assets/images/{{ el.imagen }}"
+        class="card-img-top"
+        alt="{{ el.instrumento }}"
+        style="height: 200px; object-fit: scale-down"
+      />
+      <div class="card-body">
+        <h4 class="card-title">{{ el.instrumento }}</h4>
+        <p class="card-text" style="font-size: 18px">
+          {{ el.descripcion }}
+        </p>
+        <h5 class="card-text" class="font-weight-bold">$ {{ el.precio }}</h5>
+
+        <div
+          *ngIf="el.costoEnvio == 'G'; else nogratis"
+          style="color: #3fb524; padding: 5px"
+        >
+          <img
+            src="../../../assets/img/camion.png"
+            alt="Envio gratis"
+            style="color: #000"
+          />
+          Envío gratis a todo el país
+        </div>
+        <ng-template #nogratis class="envio">
+          <p class="envio">Costo de envío: $ {{ el.costoEnvio }}</p>
+        </ng-template>
+        <p class="text-muted">{{ el.cantidadVendida }} vendidos</p>
+        <button class="btn btn-primary" (click)="handleClick(el.id)">
+          Detalle
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

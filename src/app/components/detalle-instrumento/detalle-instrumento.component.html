@@ -1,0 +1,61 @@
+<div
+  class="card mb-3 mx-auto"
+  style="
+    margin: 10px 0;
+    width: 70%;
+    height: fit-content;
+    box-shadow: 0px 2px 3px rgb(0, 0, 0, 0.3);
+    border-radius: 10px;
+    background-color: #f5f5f5;
+    padding: 10px 15px;
+  "
+>
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img
+        src="assets/images/{{ instrumento.imagen }}"
+        class="img-fluid rounded-start"
+        alt="{{ instrumento.instrumento }}"
+      />
+      <p class="card-text" style="padding: 15px 0">
+        {{ instrumento.descripcion }}
+      </p>
+    </div>
+    <div class="col-md-8" style="border-left: thin solid #737373">
+      <div class="card-body">
+        <p class="text-muted">{{ instrumento.cantidadVendida }} vendidos</p>
+        <h5 class="card-title" style="font-size: 30px">
+          {{ instrumento.instrumento }}
+        </h5>
+        <p class="card-text" style="font-weight: 400; font-size: 25px">
+          $ {{ instrumento.precio }}
+        </p>
+        <p class="card-text" style="margin-bottom: 0">
+          Marca: {{ instrumento.marca }}
+        </p>
+        <p class="card-text">Modelo: {{ instrumento.modelo }}</p>
+        <p class="card-text">
+          {{ instrumento.descripcion }}
+        </p>
+        <p class="card-text">Costo Envío:</p>
+        <div
+          *ngIf="instrumento.costoEnvio == 'G'; else nogratis"
+          style="color: #3fb524; padding: 5px"
+        >
+          <img
+            src="../../../assets/img/camion.png"
+            alt="Envio gratis"
+            style="color: #000"
+          />
+          Envío gratis
+        </div>
+        <ng-template #nogratis class="envio">
+          <p class="envio">Costo de envío: $ {{ instrumento.costoEnvio }}</p>
+        </ng-template>
+        <button class="btn btn-outline-primary" style="margin-top: 10px">
+          Agregar al carrito
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
